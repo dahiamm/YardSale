@@ -1,3 +1,4 @@
+/*General----------*/
 :root {
     --white: #FFFFFF;
     --black: #000000;
@@ -16,6 +17,7 @@ body {
     display: none;
 }
 
+/*Navbar------------*/
 nav {
     display: flex;
     justify-content: space-between;
@@ -81,6 +83,7 @@ nav {
     align-items: center;
 }
 
+/*Menu en desktop-------*/
 .desktop-menu {
     position: absolute;
     background: var(--white);
@@ -118,11 +121,64 @@ nav {
     display: inline-block;
 }
 
+/*Menu en mobile*/
+.mobile-menu {
+    position: absolute;
+    top: 60px;
+    padding: 24px;
+}
+.mobile-menu h1 {
+    text-decoration: none;
+    color: var(--black);
+    font-weight: bold;
+    margin-bottom: 24px;
+    font-size: var(--md);
+}
+.mobile-menu a {
+    text-decoration: none;
+    color: var(--black);
+    font-weight: bold;
+    margin-bottom: 24px;
+}
+.mobile-menu ul {
+    padding: 0;
+    margin: 24px 0 0;
+    list-style: none;
+}
+.mobile-menu ul:nth-child(1) {
+    border-bottom: 1px solid var(--very-light-pink);
+}
+.mobile-menu ul:nth-child(3) {
+    margin-top: 100px;
+}
+.mobile-menu ul li {
+    margin-bottom: 24px;
+}
+.mobile-menu .email {
+    font-size: var(--sm);
+    font-weight: 300;
+    margin-bottom: 0;
+}
+.mobile-menu .sign-out {
+    color: var(--hospital-green);
+    font-size: var(--sm);
+    margin-top: 0;
+}
+.mobile-menu #margin, #margin2 {
+    margin-bottom: 0;
+}
+
 @media (max-width: 640px) {
     .menu {
         display: block;
     }
-    .navbar-left ul, .navbar-email{
+    .navbar-left ul, .navbar-email, .desktop-menu{
+        display: none;
+    }
+}
+
+@media (min-width: 641px) {
+    .mobile-menu{
         display: none;
     }
 }
