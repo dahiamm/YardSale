@@ -3,12 +3,15 @@ const desktopMenu = document.querySelector('.desktop-menu')
 const mobileMenu = document.querySelector('.mobile-menu')
 const burguerMenuIcon = document.querySelector('.menu')
 const cartIcon = document.querySelector('.navbar-shopping-cart')
+const productDetailCloseIcon = document.querySelector('.product-detail-close')
 const shoppingCartContainer = document.querySelector('#shopping-cart-container')
+const productDetailContainer = document.querySelector('#product-detail')
 const cardsContainer = document.querySelector('.cards-container')
 
 menuEmail.addEventListener('click', toggleDesktopMenu)
 burguerMenuIcon.addEventListener('click', toggleMobileMenu)
 cartIcon.addEventListener('click', toggleAsideCart)
+productDetailCloseIcon.addEventListener('click', closeProductDetailAside)
 
 function toggleDesktopMenu() {
     const isMenuEmailClosed = shoppingCartContainer.classList.contains('inactive')
@@ -26,11 +29,14 @@ function toggleMobileMenu() {
         shoppingCartContainer.classList.add('inactive')
     }
 
+    closeProductDetailAside()
+
     mobileMenu.classList.toggle('inactive')
 }
 function toggleAsideCart() {
     const isMobileMenuClosed = mobileMenu.classList.contains('inactive')
     const isMenuEmailClosed = desktopMenu.classList.contains('inactive')
+    const isProductDetail = productDetailContainer.classList.contains('inactive')
 
     if (!isMobileMenuClosed) {
         mobileMenu.classList.add('inactive')
@@ -40,7 +46,18 @@ function toggleAsideCart() {
         desktopMenu.classList.add('inactive')
     }
 
+    if (!isProductDetail) {
+        productDetailContainer.classList.add('inactive')
+    }
+
     shoppingCartContainer.classList.toggle('inactive')
+}
+function openProductDetailAside() {
+    productDetailContainer.classList.remove('inactive')
+    shoppingCartContainer.classList.add('inactive')
+}
+function closeProductDetailAside() {
+    productDetailContainer.classList.add('inactive')
 }
 
 const productList = []
@@ -50,23 +67,24 @@ productList.push({
     img: 'https://images.pexels.com/photos/1149601/pexels-photo-1149601.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 })
 productList.push({
-    name: 'TV',
-    price: 220,
-    img: 'https://images.pexels.com/photos/5721908/pexels-photo-5721908.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+    name: 'Bike',
+    price: 120,
+    img: 'https://images.pexels.com/photos/1149601/pexels-photo-1149601.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 })
 productList.push({
-    name: 'Laptop',
-    price: 420,
-    img: 'https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+    name: 'Bike',
+    price: 120,
+    img: 'https://images.pexels.com/photos/1149601/pexels-photo-1149601.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 })
 
 function renderProducts(arr) {
-    for (product of productList) {
+    for (product of arr) {
         const productCard = document.createElement('div')
         productCard.classList.add('product-card')
     
         const productImg = document.createElement('img')
         productImg.setAttribute('src', product.img)
+        productImg.addEventListener('click', openProductDetailAside)
     
         const productInfo = document.createElement('div')
         productInfo.classList.add('product-info')
